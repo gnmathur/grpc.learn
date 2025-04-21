@@ -4,6 +4,7 @@ import dev.gmathur.common.AbstractChannelTest;
 import dev.gmathur.common.GrpcServer;
 import dev.gmathur.models.sec06.BankServiceGrpc;
 import dev.gmathur.models.sec06.BankServiceGrpc.BankServiceBlockingStub;
+import dev.gmathur.sec06.repository.AccountRepository;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 
@@ -25,6 +26,7 @@ public abstract class AbstractTest extends AbstractChannelTest {
     @AfterAll
     public void teardown() {
         this.grpcServer.stop();
+        AccountRepository.resetDB();
     }
 
 }

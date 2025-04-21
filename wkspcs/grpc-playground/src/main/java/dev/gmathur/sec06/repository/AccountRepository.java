@@ -31,7 +31,7 @@ public class AccountRepository {
         return Collections.unmodifiableMap(db);
     }
 
-    protected void resetDB() {
+    public static void resetDB() {
         db.clear();
         db.putAll(IntStream.rangeClosed(1, NUMBER_OF_ACCOUNTS)
                 .boxed()
