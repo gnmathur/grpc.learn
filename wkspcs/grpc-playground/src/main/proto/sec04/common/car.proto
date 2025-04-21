@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+// Let's come up with a standard here for the package name.
+package sec04.common; // we are organizing the proto files by functionality, like in Java
+
+option java_multiple_files = true;
+option java_package = "dev.gmathur.models.common";
+
+enum BodyType {
+  UNKNOWN_BODY_TYPE = 0;
+  SEDAN = 1;
+  COUPE = 2;
+  CONVERTIBLE = 3;
+  HATCHBACK = 4;
+}
+
+message Car {
+  string make = 1;
+  string model = 2;
+  int32 year = 3;
+  BodyType body_type = 4;
+}
+

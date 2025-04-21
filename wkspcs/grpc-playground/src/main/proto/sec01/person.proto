@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package sec01;
+option java_package = "dev.gmathur.models.sec01";
+
+// Person class matches the name of the proto file. This means that the generated class will be PersonOuterClass.Person
+// and the Protobuf compiler will be generating a PersonOuterClass class with a nested Person class.
+message Person {
+  string name = 1;
+  int32 age = 2;
+}

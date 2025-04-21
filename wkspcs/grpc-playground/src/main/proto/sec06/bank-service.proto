@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package sec06;
+
+option java_multiple_files = true;
+option java_package = "dev.gmathur.models.sec06";
+import "google/protobuf/empty.proto";
+
+message BalanceCheckRequest {
+  int32 account_number = 1;
+}
+
+message BalanceCheckResponse {
+  int32 account_number = 1;
+  int32 balance = 2;
+}
+
+message AllAccountsResponse {
+  repeated BalanceCheckResponse accounts = 1;
+}
+
+message WithdrawRequest {
+  int32 account_number = 1;
+  int32 amount = 2;
+}
+
+message WithdrawResponse {
+  int32 account_number = 1;
+  int32 amount = 2;
+}
+
+service BankService {
+  // Unary RPC
+  rpc GetAccountBalance(BalanceCheckRequest) returns (BalanceCheckResponse);
+  // Two ways of doing the following:
+  //
+  //  message NoParam {}
+  // rpc GetAllAccount(NoParam) returns (AccountBalance);
+  //
+  // or better still, leverage the google.protobuf.Empty message
+  rpc GetAllAccount(google.protobuf.Empty) returns (AllAccountsResponse);
+
+  // Server Stream RPC
+  rpc WithdrawMoney(WithdrawRequest) returns (stream WithdrawResponse);
+}

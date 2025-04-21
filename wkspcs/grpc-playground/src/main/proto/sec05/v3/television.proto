@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package sec05.v3;
+
+option java_package = "dev.gmathur.models.sec05.v3";
+option java_multiple_files = true;
+
+enum SupportedStandards {
+  UNKNOWN = 0;
+  HDMI = 1;
+  USB = 2;
+  BLUETOOTH = 3;
+}
+
+// This is version 2 of the Television message, which includes additional fields
+message Television {
+  string brand = 1;
+  // Removed model, screen_size, and smart fields from v1 and f2
+  repeated SupportedStandards supported_standards = 5; // list of supported standards
+  int32 year_of_manufacture = 6; // year the TV was manufactured
+}
+
+

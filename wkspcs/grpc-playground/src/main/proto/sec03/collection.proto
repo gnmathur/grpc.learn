@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package sec03;
+option java_multiple_files = true;
+option java_package = "dev.gmathur.models.sec03";
+
+message Book {
+  string title = 1;
+  string author = 2;
+  int32 publication_year = 3;
+}
+
+message Library {
+  string name = 2;
+  repeated Book books = 3; // a collection; Either a list or a set. Application can decide.
+}

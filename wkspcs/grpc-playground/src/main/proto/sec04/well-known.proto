@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+package sec04;
+
+option java_package = "dev.gmathur.models.sec04";
+option java_multiple_files = true;
+
+import "google/protobuf/any.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/field_mask.proto";
+
+// Message definition with well-known types
+message Sample {
+  // Any can hold arbitrary protobuf messages with type information
+  // Example: Used for extensible APIs where the exact message type isn't known at compile time
+  // JSON: {"@type": "type.googleapis.com/package.MessageType", "field": "value"}
+  google.protobuf.Any any = 1;
+
+  // Empty is used to indicate no data or parameters are needed
+  // Example: Used for methods that don't require input or don't return anything
+  // JSON: {}
+  google.protobuf.Empty empty = 2;
+
+  // Int32Value is a wrapper around a primitive int32 value that can be set to null
+  // Example: Used when you need to distinguish between 0 and not set
+  // JSON: 42 (directly as a number)
+  google.protobuf.Int32Value int32_value = 3;
+
+  // StringValue is a wrapper around a primitive string value that can be set to null
+  // Example: Used when you need to distinguish between empty string and not set
+  // JSON: "hello" (directly as a string)
+  google.protobuf.StringValue string_value = 4;
+
+  // Timestamp represents a point in time, independent of any time zone
+  // Example: Used for event timestamps, creation dates, etc.
+  // JSON: "2023-08-15T14:30:00.123456789Z"
+  google.protobuf.Timestamp timestamp = 5;
+
+  // Duration represents a time span, such as 42 seconds
+  // Example: Used for timeouts, intervals, or processing times
+  // JSON: "1.500s" (1.5 seconds)
+  google.protobuf.Duration duration = 6;
+
+  // FieldMask specifies which fields to update in an update operation
+  // Example: Used for partial updates to specify which fields are being modified
+  // JSON: "user.displayName,user.email" (comma-separated paths)
+  google.protobuf.FieldMask field_mask = 7;
+}
+
+// Example message that could be packed into an Any field
+message UserProfile {
+  string user_id = 1;
+  string display_name = 2;
+  string email = 3;
+  google.protobuf.Timestamp created_at = 4;
+}
+
+// Demonstrating concrete usage of the Sample message
+message ExampleUsage {
+  // Contains a collection of samples showing practical applications
+  repeated Sample samples = 1;
+
+  // Metadata about the examples
+  google.protobuf.Timestamp generated_at = 2;
+}

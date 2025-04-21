@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package sec05.v1;
+
+option java_package = "dev.gmathur.models.sec05.v1";
+option java_multiple_files = true;
+
+message Television {
+  string brand = 1;
+  string model = 2;
+  int32 screen_size = 3; // in inches
+  bool smart = 4; // true if smart TV, false otherwise
+}
+
+
