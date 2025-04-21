@@ -1,9 +1,7 @@
 package dev.gmathur.sec06;
 
-import com.google.protobuf.Empty;
-import dev.gmathur.models.sec06.AccountBalance;
 import dev.gmathur.models.sec06.BalanceCheckRequest;
-import dev.gmathur.models.sec06.BankServiceGrpc;
+import dev.gmathur.models.sec06.BalanceCheckResponse;
 import io.grpc.stub.StreamObserver;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -31,10 +29,11 @@ public class UnaryAsyncClientTest extends AbstractTest {
                 .build();
 
         var latch = new CountDownLatch(1);
-        asyncStub.getAccountBalance(request, new StreamObserver<AccountBalance>() {
+        asyncStub.getAccountBalance(request, new StreamObserver<BalanceCheckResponse>() {
             @Override
-            public void onNext(AccountBalance accountBalance) {
-                logger.info("Account balance for account number {} is {}", accountBalance.getAccountNumber(), accountBalance.getBalance());
+            public void onNext(BalanceCheckResponse accountBalance) {
+                logger.info("Account balance for account number {} is {}",
+                        accountBalance.getAccountNumber(), accountBalance.getBalance());
                 try {
                     // Testing again a wrong value to trigger an assertion failure
                     Assertions.assertEquals(request.getAccountNumber() * 104, accountBalance.getBalance());

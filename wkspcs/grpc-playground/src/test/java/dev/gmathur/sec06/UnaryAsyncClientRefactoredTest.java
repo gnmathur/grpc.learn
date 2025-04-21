@@ -2,16 +2,13 @@ package dev.gmathur.sec06;
 
 import com.google.protobuf.Empty;
 import dev.gmathur.common.ResponseObserverForTests;
-import dev.gmathur.models.sec06.AccountBalance;
 import dev.gmathur.models.sec06.AllAccountsResponse;
 import dev.gmathur.models.sec06.BalanceCheckRequest;
-import io.grpc.stub.StreamObserver;
+import dev.gmathur.models.sec06.BalanceCheckResponse;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.concurrent.CountDownLatch;
 
 /**
  * This is a much neater version of the async client test. We have essentially wrapper the StreamObserver
@@ -27,7 +24,7 @@ public class UnaryAsyncClientRefactoredTest extends AbstractTest {
                 .setAccountNumber(7)
                 .build();
 
-        var observer = ResponseObserverForTests.<AccountBalance>create();
+        var observer = ResponseObserverForTests.<BalanceCheckResponse>create();
         asyncStub.getAccountBalance(request, observer);
         observer.await();
 
@@ -47,7 +44,7 @@ public class UnaryAsyncClientRefactoredTest extends AbstractTest {
         // unary call
         var response = observer.getResponseList();
         Assertions.assertEquals(1, response.size());
-        Assertions.assertEquals(100, response.getFirst().getAccountsCount());
+        Assertions.assertEquals(16, response.getFirst().getAccountsCount());
         response.getFirst().getAccountsList()
                 .forEach(a -> Assertions.assertEquals(a.getAccountNumber() * 103, a.getBalance()));
         Assertions.assertNull(observer.getThrowable());

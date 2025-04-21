@@ -4,7 +4,6 @@ import dev.gmathur.common.AbstractChannelTest;
 import dev.gmathur.common.GrpcServer;
 import dev.gmathur.models.sec06.BankServiceGrpc;
 import dev.gmathur.models.sec06.BankServiceGrpc.BankServiceBlockingStub;
-import io.grpc.Grpc;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 

@@ -1,6 +1,5 @@
 package dev.gmathur.sec06;
 
-import dev.gmathur.models.sec06.AccountBalance;
 import dev.gmathur.models.sec06.BalanceCheckRequest;
 import dev.gmathur.models.sec06.WithdrawRequest;
 import org.junit.jupiter.api.Assertions;

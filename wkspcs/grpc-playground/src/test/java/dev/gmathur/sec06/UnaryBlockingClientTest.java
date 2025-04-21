@@ -31,7 +31,7 @@ public class UnaryBlockingClientTest extends AbstractTest {
         var response = blockingStub.getAllAccount(request);
         logger.info("All accounts: {}", response.getAccountsList());
 
-        Assertions.assertEquals(100, response.getAccountsCount());
+        Assertions.assertEquals(16, response.getAccountsCount());
         response.getAccountsList()
                 .forEach(a -> Assertions.assertEquals(a.getAccountNumber() * 103, a.getBalance()));
     }
