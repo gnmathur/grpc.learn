@@ -8,9 +8,7 @@ import io.grpc.stub.StreamObserver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Random;
-
-public class GrpcClientUsingAsync {
+public class GrpcClientUnaryUsingAsync {
     static class BalanceCheckResponseObserver implements StreamObserver<BalanceCheckResponse> {
         private final int requestId;
 
@@ -33,7 +31,7 @@ public class GrpcClientUsingAsync {
         }
     }
 
-    private static final Logger logger = LoggerFactory.getLogger(GrpcClientUsingAsync.class);
+    private static final Logger logger = LoggerFactory.getLogger(GrpcClientUnaryUsingAsync.class);
 
     public static void main(String[] args) {
         var channel = ManagedChannelBuilder.forAddress("localhost", 9991)

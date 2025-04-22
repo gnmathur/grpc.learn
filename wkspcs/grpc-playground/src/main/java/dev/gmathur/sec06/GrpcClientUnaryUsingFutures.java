@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
 
-public class GrpcClientUsingFutures {
-    private static final Logger logger = LoggerFactory.getLogger(GrpcClientUsingFutures.class);
+public class GrpcClientUnaryUsingFutures {
+    private static final Logger logger = LoggerFactory.getLogger(GrpcClientUnaryUsingFutures.class);
 
     public static void main(String[] args) {
         ManagedChannel channel = ManagedChannelBuilder

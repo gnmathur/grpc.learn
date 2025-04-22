@@ -8,8 +8,8 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Random;
 
-public class GrpcClientUsingBlockingStub {
-    private static final Logger logger = LoggerFactory.getLogger(GrpcClientUsingBlockingStub.class);
+public class GrpcClientUnaryUsingBlockingStub {
+    private static final Logger logger = LoggerFactory.getLogger(GrpcClientUnaryUsingBlockingStub.class);
 
     public static void main(String[] args) {
         var channel = ManagedChannelBuilder.forAddress("localhost", 9991)
