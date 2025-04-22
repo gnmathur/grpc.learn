@@ -9,7 +9,6 @@ import io.grpc.stub.StreamObserver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class BankService extends BankServiceImplBase {
@@ -88,5 +87,40 @@ public class BankService extends BankServiceImplBase {
         // Complete the RPC call
         responseObserver.onCompleted();
     }
+
+    @Override
+    public StreamObserver<DepositRequest> depositMoney(StreamObserver<DepositResponse> responseObserver) {
+        return new StreamObserver<DepositRequest>() {
+            private int accountNumber;
+
+            @Override
+            public void onNext(DepositRequest depositRequest) {
+                switch (depositRequest.getReqOptionsCase()) {
+                    case ACCOUNT_NUMBER -> this.accountNumber = depositRequest.getAccountNumber();
+                    case AMOUNT ->  AccountRepository.deposit(accountNumber, depositRequest.getAmount());
+                }
+            }
+
+            // Client want to cancel the request, or something went wrong
+            // A good place to roll-back the transaction
+            @Override
+            public void onError(Throwable throwable) {
+                log.error("Client cancelled the request or something went wrong", throwable);
+                responseObserver.onError(throwable);
+            }
+
+            // Can be committed to the database
+            @Override
+            public void onCompleted() {
+                var response = DepositResponse.newBuilder()
+                        .setAccountNumber(this.accountNumber)
+                        .setBalance(AccountRepository.getBalance(this.accountNumber))
+                        .build();
+                responseObserver.onNext(response);
+                responseObserver.onCompleted();
+            }
+        };
+    }
+
 
 }

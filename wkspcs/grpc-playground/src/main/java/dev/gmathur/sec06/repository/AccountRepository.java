@@ -26,6 +26,10 @@ public class AccountRepository {
         db.computeIfPresent(accountNumber, (k, v) -> v - amount);
     }
 
+    public static void deposit(int accountNumber, int amount) {
+        db.computeIfPresent(accountNumber, (k, v) -> v + amount);
+    }
+
     public static Map<Integer, Integer> getAllAccounts() {
         // We don't want to expose the mutable map to the client. So we return an unmodifiable view of the map.
         return Collections.unmodifiableMap(db);
