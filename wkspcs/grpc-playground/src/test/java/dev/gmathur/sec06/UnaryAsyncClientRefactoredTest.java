@@ -25,7 +25,7 @@ public class UnaryAsyncClientRefactoredTest extends AbstractTest {
                 .build();
 
         var observer = ResponseObserverForTests.<BalanceCheckResponse>create();
-        asyncStub.getAccountBalance(request, observer);
+        bankServiceAsyncStub.getAccountBalance(request, observer);
         observer.await();
 
         Assertions.assertEquals(1, observer.getResponseList().size());
@@ -38,7 +38,7 @@ public class UnaryAsyncClientRefactoredTest extends AbstractTest {
     public void allAccountsTest() {
         var request = Empty.getDefaultInstance();
         var observer = ResponseObserverForTests.<AllAccountsResponse>create();
-        asyncStub.getAllAccount(request, observer);
+        bankServiceAsyncStub.getAllAccount(request, observer);
         observer.await();
         // Note that the response is a list of accounts but the response itself is a single object since this is a
         // unary call

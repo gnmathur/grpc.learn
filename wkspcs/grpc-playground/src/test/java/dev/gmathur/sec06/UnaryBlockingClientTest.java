@@ -16,7 +16,7 @@ public class UnaryBlockingClientTest extends AbstractTest {
                 .setAccountNumber(7)
                 .build();
 
-        var balance = blockingStub.getAccountBalance(request);
+        var balance = bankServiceBlockingStub.getAccountBalance(request);
         logger.info("Account balance for account number {} is {}", request.getAccountNumber(), balance.getBalance());
 
         Assertions.assertEquals(request.getAccountNumber() * 103, balance.getBalance());
@@ -28,7 +28,7 @@ public class UnaryBlockingClientTest extends AbstractTest {
         // or better still
         var request = Empty.getDefaultInstance();
 
-        var response = blockingStub.getAllAccount(request);
+        var response = bankServiceBlockingStub.getAllAccount(request);
         logger.info("All accounts: {}", response.getAccountsList());
 
         Assertions.assertEquals(16, response.getAccountsCount());

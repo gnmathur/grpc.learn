@@ -17,7 +17,7 @@ public class ClientStreamingAsyncClientTest extends AbstractTest {
     public void depositTest() {
         var responseObserver = ResponseObserverForTests.<DepositResponse>create();
 
-        var requestObserver = asyncStub.depositMoney(responseObserver);
+        var requestObserver = bankServiceAsyncStub.depositMoney(responseObserver);
 
         // First request is the account number only
         var request = DepositRequest.newBuilder()
@@ -58,7 +58,7 @@ public class ClientStreamingAsyncClientTest extends AbstractTest {
     public void depositCancelledRequestTest() {
         var responseObserver = ResponseObserverForTests.<DepositResponse>create();
 
-        var requestObserver = asyncStub.depositMoney(responseObserver);
+        var requestObserver = bankServiceAsyncStub.depositMoney(responseObserver);
 
         // First request is the account number only
         var request = DepositRequest.newBuilder()

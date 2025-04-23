@@ -20,7 +20,7 @@ public class ServerStreamingAsyncClientTest extends AbstractTest {
                 .setAccountNumber(7)
                 .build();
         var observer = ResponseObserverForTests.<WithdrawResponse>create();
-        asyncStub .withdrawMoney(request, observer);
+        bankServiceAsyncStub.withdrawMoney(request, observer);
 
         observer.await();
 

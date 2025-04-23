@@ -1,4 +1,4 @@
-package dev.gmathur.sec06;
+package dev.gmathur.sec06.clients;
 
 import com.google.common.util.concurrent.ListenableFuture;
 import dev.gmathur.models.sec06.BalanceCheckRequest;

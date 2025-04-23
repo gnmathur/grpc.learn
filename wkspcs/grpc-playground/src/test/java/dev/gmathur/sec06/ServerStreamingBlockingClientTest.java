@@ -18,7 +18,7 @@ public class ServerStreamingBlockingClientTest extends AbstractTest {
                 .setAccountNumber(7)
                 .build();
 
-        var balanceIterator = blockingStub.withdrawMoney(request);
+        var balanceIterator = bankServiceBlockingStub.withdrawMoney(request);
 
         int count = 0;
         while (balanceIterator.hasNext()) {
@@ -31,7 +31,7 @@ public class ServerStreamingBlockingClientTest extends AbstractTest {
         var balanceCheckRequest = BalanceCheckRequest.newBuilder()
                 .setAccountNumber(7)
                 .build();
-        var balance = blockingStub.getAccountBalance(balanceCheckRequest);
+        var balance = bankServiceBlockingStub.getAccountBalance(balanceCheckRequest);
         logger.info("Account balance for account number {} is {}", request.getAccountNumber(), balance.getBalance());
         Assertions.assertEquals(7 * 103 - 40, balance.getBalance());
     }

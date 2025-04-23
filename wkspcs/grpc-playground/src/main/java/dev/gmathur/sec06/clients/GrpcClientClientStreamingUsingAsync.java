@@ -1,4 +1,4 @@
-package dev.gmathur.sec06;
+package dev.gmathur.sec06.clients;
 
 import dev.gmathur.models.sec06.BankServiceGrpc;
 import dev.gmathur.models.sec06.WithdrawRequest;

@@ -29,7 +29,7 @@ public class UnaryAsyncClientTest extends AbstractTest {
                 .build();
 
         var latch = new CountDownLatch(1);
-        asyncStub.getAccountBalance(request, new StreamObserver<BalanceCheckResponse>() {
+        bankServiceAsyncStub.getAccountBalance(request, new StreamObserver<BalanceCheckResponse>() {
             @Override
             public void onNext(BalanceCheckResponse accountBalance) {
                 logger.info("Account balance for account number {} is {}",

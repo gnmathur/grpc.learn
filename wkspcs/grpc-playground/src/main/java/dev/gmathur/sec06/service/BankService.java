@@ -1,4 +1,4 @@
-package dev.gmathur.sec06;
+package dev.gmathur.sec06.service;
 
 import com.google.common.util.concurrent.Uninterruptibles;
 import com.google.protobuf.Empty;

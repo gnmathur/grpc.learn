@@ -1,5 +1,6 @@
 package dev.gmathur.common;
 
+import dev.gmathur.sec06.service.BankService;
 import io.grpc.ServerBuilder;
 
 import java.io.IOException;
@@ -9,7 +10,7 @@ public class GrpcServerBasic {
         System.out.println("Starting gRPC server...");
 
         var server = ServerBuilder.forPort(9991)
-                .addService(new dev.gmathur.sec06.BankService())
+                .addService(new BankService())
                 .build();
 
         server.start();
